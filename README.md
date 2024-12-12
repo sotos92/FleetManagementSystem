@@ -34,7 +34,7 @@ Ensure you have the following installed:
 Clone the project repository to your local machine:
 ```bash
 # Example
-$ git clone <repository-url>
+$ git clone https://github.com/sotos92/FleetManagementSystem.git
 $ cd FleetManagementSystem
 ```
 
