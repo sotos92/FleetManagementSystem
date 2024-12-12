@@ -50,7 +50,7 @@ This command builds and runs all required services:
 - PostgreSQL database
 
 ### Step 3: Access the Frontend
-Open your browser and navigate to:
+In the repository folder navigate to:
 ```
 frontend/index.html
 ```
