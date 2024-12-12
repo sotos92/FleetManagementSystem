@@ -90,7 +90,7 @@ $ pytest unit_tests.py
   - **Database:** `fleet_db`
 - The application is configured for CORS to allow cross-origin requests.
 
-## Future Enhancements
+## Extra Added Features
 - Responsive user-friendly design for the frontend.
 - Searching/Paging/Ordering mechanisms incorporated in cars and drivers dataTables.
 - When a driver gets deleted the associated linked car automatically gets updated.
