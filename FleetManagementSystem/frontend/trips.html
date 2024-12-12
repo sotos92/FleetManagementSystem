@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FMS</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+	<!-- Marker Cluster CSS -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+	<!-- Marker Cluster JS -->
+	<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+		
+    <!-- Custom Script -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Navigation Menu -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Fleet Management System (FMS)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="trips.html">Trips</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Fleet Management System (FMS) - Trips</h1>
+        <hr>
+
+        <!-- Add Trip Form -->
+        <div class="card mb-4">
+            <div class="card-header">Add New Trip</div>
+            <div class="card-body">
+                <form id="add-trip-form">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="trip-description" class="form-label">Description</label>
+                            <input type="text" id="trip-description" class="form-control" placeholder="Trip Description">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="trip-shift" class="form-label">Shift</label>
+                            <select id="trip-shift" class="form-select">
+                                <option value="">Select Shift</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Night">Night</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+					
+                        <div class="col-md-6 mb-3">
+
+                            <label for="trip-destination-lat" class="form-label">Destination Latitude</label>
+                            <input type="number" id="trip-destination-lat" class="form-control" placeholder="Destination Latitude">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="trip-destination-long" class="form-label">Destination Longitude</label>
+                            <input type="number" id="trip-destination-long" class="form-control" placeholder="Destination Longitude">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="car-select" class="form-label">Select Car</label>
+                            <select id="car-select" class="form-select">
+                                <option value="">Select Car</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" id="add-trip" class="btn btn-primary">Add Trip</button>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Trips Table -->
+        <div class="card">
+            <div class="card-header">Scheduled Trips</div>
+            <div class="card-body">
+				<div class="table-responsive">
+                <table id="trips-table" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th>Car</th>
+                            <th>Shift</th>
+                            <th>Destination Latitude</th>
+                            <th>Destination Longitude</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+				</div>
+            </div>
+        </div>
+
+        <!-- Leaflet Map -->
+		<div class="card mt-4">
+			<div class="card-header">Trip Map</div>
+			<div class="card-body">
+				<div class="mb-3">
+					<button id="show-all-cars" class="btn btn-primary">Show All Cars</button>
+					<button id="clear-map" class="btn btn-secondary">Clear Map</button>
+				</div>
+				<div id="map" style="height: 500px;"></div>
+			</div>
+		</div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	
+
+
+
+
+
+</body>
+</html>

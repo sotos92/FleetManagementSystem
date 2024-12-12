@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FMS</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+	
+    <!-- Custom Script -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+	<!-- Navigation Menu -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Fleet Management System (FMS)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trips.html">Trips</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Fleet Management System (FMS)</h1>
+
+		<hr>
+
+        <!-- Drivers Section -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h2>Drivers</h2>
+                <table id="drivers-table" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>License Number</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="drivers-list">
+                        <!-- Dynamically populated rows -->
+                    </tbody>
+                </table>
+				<br>
+                <div class="mb-3 d-flex align-items-center">
+                    <input type="text" id="driver-name" class="form-control me-2" placeholder="Driver Name" style="flex: 1;">
+                    <input type="text" id="driver-license" class="form-control me-2" placeholder="Driver License" style="flex: 1;">
+                    <button id="add-driver" class="btn btn-primary" style="flex: 1; height: 100%;">Add Driver</button>
+                </div>
+            </div>
+        </div>
+
+		<hr>
+		
+        <!-- Cars Section -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h2>Cars</h2>
+                <table id="cars-table" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Model</th>
+                            <th>License Plate</th>
+                            <th>Driver Assigned</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cars-list">
+                        <!-- Dynamically populated rows -->
+                    </tbody>
+                </table>
+				<br>
+                <div class="mb-3 d-flex align-items-center">
+                    <input type="text" id="car-model" class="form-control me-2" placeholder="Car Model" style="flex: 1;">
+                    <input type="text" id="car-license" class="form-control me-2" placeholder="Car License" style="flex: 1;">
+                    <button id="add-car" class="btn btn-primary" style="flex: 1; height: 100%;">Add Car</button>
+                </div>
+            </div>
+        </div>
+		
+		<hr>
+        <!-- Assign Driver to Car Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Assign Driver to Car</h2>
+                <div class="mb-3 d-flex align-items-center">
+                    <select id="car-select" class="form-select me-2" style="flex: 1;">
+                        <option value="">Select Car</option>
+                        <!-- Dynamically populated options -->
+                    </select>
+                    <select id="driver-select" class="form-select me-2" style="flex: 1;">
+                        <option value="">Select Driver</option>
+                        <!-- Dynamically populated options -->
+                    </select>
+                    <button id="assign-driver" class="btn btn-success" style="flex: 1; height: 100%;">Assign Driver</button>
+                </div>
+				<hr>
+            </div>
+        </div>
+    </div>
+	
+	
+	
+	<!-- Edit Driver Modal -->
+	<div class="modal fade" id="editDriverModal" tabindex="-1" aria-labelledby="editDriverModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editDriverModalLabel">Edit Driver</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="edit-driver-form">
+						<div class="mb-3">
+							<label for="edit-driver-name" class="form-label">Driver Name</label>
+							<input type="text" class="form-control" id="edit-driver-name" placeholder="Enter Driver Name">
+						</div>
+						<div class="mb-3">
+							<label for="edit-driver-license" class="form-label">License Number</label>
+							<input type="text" class="form-control" id="edit-driver-license" placeholder="Enter License Number">
+						</div>
+						<input type="hidden" id="edit-driver-id">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="save-driver-changes">Save Changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Edit Car Modal -->
+	<div class="modal fade" id="editCarModal" tabindex="-1" aria-labelledby="editCarModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editCarModalLabel">Edit Car</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="edit-car-form">
+						<div class="mb-3">
+							<label for="edit-car-model" class="form-label">Car Model</label>
+							<input type="text" class="form-control" id="edit-car-model" placeholder="Enter Car Model">
+						</div>
+						<div class="mb-3">
+							<label for="edit-car-license" class="form-label">License Plate</label>
+							<input type="text" class="form-control" id="edit-car-license" placeholder="Enter License Plate">
+						</div>
+						<input type="hidden" id="edit-car-id">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="save-car-changes">Save Changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Initialize DataTables for Drivers and Cars
+        $(document).ready(function() {
+            $('#drivers-table').DataTable();
+            $('#cars-table').DataTable();
+        });
+    </script>
+</body>
+</html>

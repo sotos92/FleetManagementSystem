@@ -1,0 +1,42 @@
+
+services:
+  fleet-service:
+    build:
+      context: ./backend/fleet-service
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/fleet-service:/app
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/fleet_db
+    depends_on:
+      - db
+
+  fleet-simulator:
+    build:
+      context: ./backend/fleet-simulator
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./backend/fleet-simulator:/app
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/fleet_db
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: fleet_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      
+
+volumes:
+  postgres_data:

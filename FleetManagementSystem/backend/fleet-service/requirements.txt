@@ -1,0 +1,12 @@
+# Backend dependencies
+fastapi
+sqlalchemy
+asyncpg
+pytest
+uvicorn
+websockets
+psycopg2-binary
+pydantic
+pytest
+pytest-asyncio
+httpx
